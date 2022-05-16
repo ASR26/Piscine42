@@ -1,0 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_sort_params.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asolano- <asolano-@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/26 15:24:55 by asolano-          #+#    #+#             */
+/*   Updated: 2022/02/27 12:36:48 by asolano-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <unistd.h>
+void	ft_print_params(int argc, char **argv);
+void	ft_swap(char *a, char *b);
+
+void	ft_print_params(int argc, char **argv)
+{
+	int		i;
+	int		j;
+
+	j = 0;
+	i = 1;
+	while (i < argc)
+	{
+	   	while (argv[i][j] != '\0')
+		{
+			write (1, &argv[i][j], 1);
+			j++;
+		}
+		write (1, "\n", 1);
+		j = 0;
+		i++;
+	}
+}
+
+void ft_swap(char *a, char *b)
+{
+	char*	holder;
+
+		holder = a;
+		a = b;
+		b = holder;
+}
+
+void	ft_sort_params(int argc, char **argv)
+{
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 1;
+		while (i < argc)
+		{
+			while (argv[i][j] != '\0')
+			{
+				if(argv[i][j] < argv[i + 1][j])
+					ft_swap(argv[i], argv[i + 1]);
+				j++;
+			}
+			i++;
+		}
+	
+
+	ft_print_params(argc, argv);
+}
+
+int	main(int argc, char **argv)
+{
+	ft_sort_params(argc, argv);
+}
